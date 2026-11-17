@@ -26,4 +26,4 @@ HybridDesk AI uses the **Firebase AI Logic Hybrid Inference SDK** (`InferenceMod
 4. Run `npm run dev`.
 
 ## 🔗 Live Demo
-[(https://hybriddesk-ai.vercel.app/)]
+[https://hybriddesk-ai.vercel.app/](https://hybriddesk-ai.vercel.app/)
