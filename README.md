@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HybridDesk AI - Local-First Document Summarizer
 
-## Getting Started
+HybridDesk AI is a privacy-focused study assistant built for the **#BuildHybridAI 2026** hackathon. It leverages **Firebase AI Logic** to run AI inference locally on the user's device using Gemini Nano, and seamlessly falls back to the Cloud when needed.
 
-First, run the development server:
+## 🚀 The Problem
+Most AI tools send all your data to the cloud, raising privacy concerns and requiring an internet connection. Users want fast, private AI for everyday tasks, but also need the power of the cloud for heavier workloads or when their hardware doesn't support local AI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 💡 The Solution
+HybridDesk AI uses the **Firebase AI Logic Hybrid Inference SDK** (`InferenceMode.PREFER_ON_DEVICE`) to solve this:
+- **On-Device (Local):** On supported devices (Chrome v139+ with sufficient hardware), short notes are summarized directly on the machine using Chrome's built-in Gemini Nano model. This is 100% private, offline-capable, and free.
+- **Cloud Fallback:** If the local model is unavailable (e.g., unsupported hardware, low VRAM, or Incognito mode), the app seamlessly falls back to the Gemini Flash cloud model.
+- **Live Inference Badge:** The UI explicitly shows the user whether their data was processed **On-Device** or in the **Cloud**, building trust and transparency.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*(Note: My current development hardware is flagged by Chrome as `Device Capable: false` due to performance class. The app successfully detects this and falls back to the cloud. A "Simulate On-Device" toggle is included in the UI to demonstrate the visual state when local inference is available.)*
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
+- **Framework:** Next.js (App Router) + TypeScript + Tailwind CSS
+- **AI:** Firebase AI Logic (`firebase/ai` v12.5+)
+- **Security:** Firebase App Check (Debug tokens used for the hackathon demo)
+- **Hosting:** Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏃‍♂️ How to Run Locally
+1. Clone the repository: `git clone https://github.com/myhifi/hybriddesk-ai.git`
+2. Run `npm install`.
+3. Create a `.env.local` file with your Firebase config (see `.env.local.example`).
+4. Run `npm run dev`.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔗 Live Demo
+[(https://hybriddesk-ai.vercel.app/)]

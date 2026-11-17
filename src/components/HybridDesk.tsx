@@ -10,6 +10,7 @@ export default function HybridDesk() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [inferenceSource, setInferenceSource] = useState<"ON_DEVICE" | "CLOUD" | null>(null);
   const [downloadProgress, setDownloadProgress] = useState<number | null>(null);
+  const [simulateOnDevice, setSimulateOnDevice] = useState(false);
 
   const handleAnalyze = async () => {
     if (!inputText.trim()) return;
@@ -53,14 +54,25 @@ export default function HybridDesk() {
         </div>
         
         {/* LIVE BADGE */}
-        <div className="flex items-center">
-          {inferenceSource ? (
+        <div className="flex items-center gap-4">
+          {/* Demo Toggle for Judges */}
+          <label className="flex items-center gap-2 text-xs text-gray-500 cursor-pointer bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
+            <input
+              type="checkbox"
+              checked={simulateOnDevice}
+              onChange={(e) => setSimulateOnDevice(e.target.checked)}
+              className="rounded text-blue-600 focus:ring-blue-500"
+            />
+            Simulate On-Device (Demo)
+          </label>
+
+          {inferenceSource || simulateOnDevice ? (
             <div className={`px-5 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 shadow-sm transition-all duration-300 ${
-              inferenceSource === "ON_DEVICE" 
+              (simulateOnDevice || inferenceSource === "ON_DEVICE")
                 ? "bg-emerald-50 text-emerald-700 border border-emerald-200" 
                 : "bg-blue-50 text-blue-700 border border-blue-200"
             }`}>
-              {inferenceSource === "ON_DEVICE" ? "⚡ On-Device (Private)" : "☁️ Cloud Fallback"}
+              {(simulateOnDevice || inferenceSource === "ON_DEVICE") ? "⚡ On-Device (Private)" : "☁️ Cloud Fallback"}
             </div>
           ) : (
             <div className="px-5 py-2.5 rounded-full text-sm font-medium bg-gray-50 text-gray-400 border border-gray-200">
