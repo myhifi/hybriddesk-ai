@@ -1,0 +1,2 @@
+- Never run any terminal commands, type checks, or linter checks automatically. 
+- Only create or modify the requested files and stop immediately.
