@@ -67,4 +67,3 @@ The app also calls `initializeDeviceModel()` after a user interaction (button cl
 - **Live Demo:** [https://hybriddesk-ai.vercel.app/](https://hybriddesk-ai.vercel.app/)
 - **Source Code:** [https://github.com/myhifi/hybriddesk-ai](https://github.com/myhifi/hybriddesk-ai)
 - **Demo Video:** [https://youtu.be/gH1UkyyJBB8](https://youtu.be/gH1UkyyJBB8)
-```
